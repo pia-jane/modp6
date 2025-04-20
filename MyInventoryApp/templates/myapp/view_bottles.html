@@ -1,0 +1,48 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+
+    <!-- Add Button Nav Bar-->
+                {% block navbar %}
+                <a href="{%url 'add_bottle'%}" style="color:white"><i class="material-icons">add</i></a>
+                {% endblock %}
+
+    <!-- Back Button to Supplier-->
+                {% block sidebar %}
+                <ul class="sidebar-menu list-unstyled">  
+                    <li><a href="{% url 'view_supplier' %}"class="btn btn-secondary btn-block">Back</a></li>
+                </ul>
+                {% endblock %}
+
+    <!-- Bottles List (UPDATE VIEW BOTTLE DETAILS LINK)-->
+                {% block content %}
+                <h2><b>Water Bottles</b></h2>
+                <div class="col-12">
+
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <th scope="col"> SKU </th>
+                            <th scope="col"> Brand </th>
+                            <th scope="col"> Cost </th>
+                            <th scope="col"> Size </th>
+                            <th scope="col"> Mouth Size </th>
+                            <th scope="col"> Color </th>
+                            <th scope="col"> Quantity </th>
+                            <th scope="col"> Supplier </th>
+                        </thead>
+                        <tbody>
+                            {% for b in waterBottle %}
+                            <tr>
+                                <td> <a href="{% url 'view_bottle_details' b.pk %}"> {{ b.sku }} </a></td>
+                                <td> {{ b.brand }} </td>
+                                <td> {{ b.cost }} </td>
+                                <td> {{ b.size }} </td>
+                                <td> {{ b.mouthSize }} </td>
+                                <td> {{ b.color }} </td>
+                                <td> {{ b.currentQuantity }} </td>
+                                <td> {{ b.suppliedBy }} </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endblock %}

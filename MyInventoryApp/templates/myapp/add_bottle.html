@@ -1,0 +1,90 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">  
+    <div class="card shadow w-100 mx-3" style="max-width: 600px;">
+
+        <div class="card-header text-white"  style="background-color: #59257d;">
+            <h4>Add Water Bottle</h4>
+        </div>
+
+        <div class="card-body">
+            <form method="POST" action="{% url 'add_bottle' %}">{% csrf_token %}>
+                <div class="row">
+                    <div class="col-md-6 mb-2">
+                        <label class="form-label">SKU</label>
+                        <input type="text" class="form-control" id="sku" name="sku" required>
+                    </div>
+
+                    <div class="col-md-6 mb-2">
+                        <label class="form-label">Brand</label>
+                        <input type="text" class="form-control" id="brand" name="brand" required>
+                    </div>
+                </div>
+
+                <div class="row">  
+                    <div class="col-md-6 mb-2">
+                        <label class="form-label">Cost</label>
+                        <input type="text" class="form-control" id="cost" name="cost" required>
+                    </div>
+
+                    <div class="col-md-6 mb-2">  
+                        <label class="form-label">Size</label>
+                        <input type="text" class="form-control" id="size" name="size" required>
+                    </div>
+                </div>
+
+                <div class="row">  
+                    <div class="col-md-6 mb-2">
+                        <label class="form-label">Mouthsize</label>
+                        <input type="text" class="form-control" id="mouthSize" name="mouthSize" required>
+                    </div>
+
+                    <div class="col-md-6 mb-2">  
+                        <label class="form-label">Color</label>
+                        <input type="text" class="form-control" id="color" name="color" required>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-2">
+                        <label class="form-label">Supplied By</label>
+                        <select class="form-control" id="suppliedBy" name="suppliedBy" required>
+                            <option value =""> Select Supplier </option>
+                            {% for s in suppliedBy %}
+                                <option value="{{ s.id }}"> {{ s.name }}  </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <div class="col-md-6 mb-2">
+                        <label class="form-label">Current Quantity</label>
+                        <input type="text" class="form-control" id="currentQuantity" name="currentQuantity" required>
+                    </div>
+                </div>
+                <div class = "row">
+                    <div class="d-flex justify-content-center mt-3"">
+                        <button type="submit" class="btn btn-primary">Add to Water Bottles</button>
+                    </div>
+                </div>
+                <div class = "row">
+                    <div class="d-flex justify-content-center col-md-6 mb-4 mt-2">
+                        <a href="{% url 'view_supplier' %}" class="btn btn-primary">Back</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+
+
+
+
